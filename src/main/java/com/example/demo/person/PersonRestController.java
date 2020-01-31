@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/people")
+@RestController
+@RequestMapping("/people")
 public class PersonRestController {
 
     private final PersonService personService;
@@ -17,18 +18,18 @@ public class PersonRestController {
         this.personService = personService;
     }
 
-    @GetMapping("/people")
+    @GetMapping
     public ResponseEntity<List<PersonDto>> getAllPeople() {
         List<PersonDto> personDtoList = personService.findAll();
         return ResponseEntity.ok(personDtoList);
     }
 
-    @PostMapping("/people/person")
+    @PostMapping("/person")
     public ResponseEntity<PersonDto> createPerson(@RequestBody PersonDto personDto) {
         return ResponseEntity.ok(personService.createPerson(personDto));
     }
 
-    @GetMapping("/people/person/{name}")
+    @GetMapping("/person/{name}")
     public ResponseEntity getPerson(@PathVariable("name") String name) {
         ResponseEntity responseEntity;
         PersonDto person = personService.findPerson(name);
