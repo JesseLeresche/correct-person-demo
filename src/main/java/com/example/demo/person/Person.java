@@ -22,9 +22,17 @@ public class Person {
     private Long id;
     private String name;
     private Integer age;
+    private String password;
 
-    public Person(String name, Integer age) {
-        this.name = name;
+    public Person(String username, Integer age, String password) {
+        this.name = username;
         this.age = age;
+        this.password = password;
+    }
+
+    public Person(PersonDto personDto) {
+        this.name = personDto.getUsername();
+        this.password = personDto.getPassword();
+        this.age = personDto.getAge();
     }
 }

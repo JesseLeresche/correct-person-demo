@@ -18,10 +18,9 @@ public class PersonService {
     }
 
     public PersonDto createPerson(PersonDto personDto) {
-        Person person = new Person(personDto.getName(), personDto.getAge());
+        Person person = new Person(personDto);
         Person createdPerson = personRepository.save(person);
-        PersonDto createdPersonDto = new PersonDto(createdPerson.getName(), createdPerson.getAge());
-        return createdPersonDto;
+        return new PersonDto(createdPerson);
     }
 
     public PersonDto findPerson(String name) {

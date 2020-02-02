@@ -2,28 +2,31 @@ package com.example.demo.person;
 
 public class PersonDto {
 
-    private String name;
+    private String username;
     private Integer age;
+    private String password;
 
     public PersonDto() {
     }
 
-    public PersonDto(String name, Integer age) {
-        this.name = name;
+    public PersonDto(String username, Integer age, String password) {
+        this.username = username;
         this.age = age;
+        this.password = password;
     }
 
     public PersonDto(Person person) {
-        this.name = person.getName();
+        this.username = person.getName();
         this.age = person.getAge();
+        this.password = person.getPassword();
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Integer getAge() {
@@ -32,5 +35,13 @@ public class PersonDto {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
