@@ -1,6 +1,7 @@
 package com.example.demo.person;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -11,14 +12,18 @@ import java.util.stream.Collectors;
 @Slf4j
 public class PersonService {
 
-    private PersonRepository personRepository;
+    private final PersonRepository personRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public PersonService(PersonRepository personRepository) {
+
+    public PersonService(PersonRepository personRepository, PasswordEncoder passwordEncoder) {
         this.personRepository = personRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public PersonDto createPerson(PersonDto personDto) {
-        Person person = new Person(personDto);
+//        Person person = new Person(personDto);
+        Person person = new Person(personDto.getUsername(), personDto.getAge(), passwordEncoder.encode(personDto.getPassword()));
         Person createdPerson = personRepository.save(person);
         return new PersonDto(createdPerson);
     }
